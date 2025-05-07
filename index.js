@@ -1,10 +1,22 @@
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
+const path = require('path');
 
 http.createServer(function (req, res) {
-    const q = url.parse(req.url, true); // whats this
-    const filename = "." + q.pathname; // what's going on here
+    const q = url.parse(req.url, true);
+    let pathname = q.pathname;
+
+    // If path ends with / treat it as index
+    if (pathname === '/') {
+        pathname = '/index.html';
+    } 
+    // If path doesn't end with html add it
+    else if (!pathname.endsWith('.html')) {
+        pathname += '.html';
+    }
+
+    const filename = '.' + pathname;
     fs.readFile(filename, function (err, data) {
         if (err) {
             fs.readFile('./404.html', function (err404, data404) {
