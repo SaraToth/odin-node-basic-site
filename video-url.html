@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+</head>
+<body>
+    <h1>Surprise Video</h1>
+    <iframe id="myVid" width="560" height="315"  frameborder="0" allowfullscreen></iframe>
+    <script>
+        fetch('/video-url')
+        .then(response => response.json())
+        .then(data => {
+            const video = document.getElementById("myVid");
+            const videoSrc = "https://www.youtube.com/embed/" + data.url;
+            video.src = videoSrc;
+            video.load();
+        })
+    </script>
+</body>
+</html>

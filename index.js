@@ -1,16 +1,25 @@
+require('dotenv').config();
+
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
+const videoURL = process.env.VIDEO_URL;
 
 http.createServer(function (req, res) {
     const q = url.parse(req.url, true);
     let pathname = q.pathname;
 
+    if(pathname === '/video-url.html') {
+        res.writeHead(200, { 'content-type': 'application/json'});
+        return res.end(JSON.stringify({ url: videoURL}));
+    }
+
     // If path ends with / treat it as index
     if (pathname === '/') {
         pathname = '/index.html';
     } 
+
     // If path doesn't end with html add it
     else if (!pathname.endsWith('.html')) {
         pathname += '.html';
