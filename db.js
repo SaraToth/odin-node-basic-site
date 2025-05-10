@@ -1,5 +1,3 @@
-const { get } = require("./routes/authorRouter");
-
 const authors = [
     { id: 1, name: "Bryan" },
     { id: 2, name: "Christian" },
@@ -10,4 +8,4 @@ async function getAuthorById(authorId) {
     return authors.find(author => author.id === authorId);
 };
 
-module.exportsf = { getAuthorById };
+module.exports = { getAuthorById };
