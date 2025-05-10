@@ -5,16 +5,10 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
-const videoURL = process.env.VIDEO_URL;
 
 // http.createServer(function (req, res) {
 //     const q = url.parse(req.url, true);
 //     let pathname = q.pathname;
-
-//     if(pathname === '/video-url.html') {
-//         res.writeHead(200, { 'content-type': 'application/json'});
-//         return res.end(JSON.stringify({ url: videoURL}));
-//     }
 
 //     // If path ends with / treat it as index
 //     if (pathname === '/') {
@@ -62,9 +56,7 @@ app.use((req, res, next) => {
     res.status(404).sendFile(path.join(__dirname, "404.html"));
 });
 
-// app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log("update!")
 })
